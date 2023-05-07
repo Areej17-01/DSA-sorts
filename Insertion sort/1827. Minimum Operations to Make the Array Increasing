@@ -1,0 +1,45 @@
+
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        int oper = 0;
+        for(int i = 1; i<nums.size(); i++) {
+            int current = nums[i];
+            int j = i-1;
+            while(j >= 0 && nums[j] >= current) {
+                int diff = nums[j] - current + 1;
+                current += diff;
+                oper += diff;
+                j--;
+            }
+            nums[i] = current;
+        }
+        return oper;
+    }
+};
+
+//sol 2
+
+
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        int n = nums.size();
+        int final=0;
+        for (int i = 1; i < n; i++) {
+		int curr = nums[i];
+		int j = i - 1;
+
+		if (j >= 0 and nums[j] > curr) {
+			final +=  (nums[j] - curr) + 1;
+			nums[i] = curr +  (nums[j] - curr)+1;
+		}
+		if (j >= 0 and nums[j] == curr) {
+			final += 1;
+			nums[i] = curr + 1;
+		}
+        }
+    return final;  
+    }
+    
+};
